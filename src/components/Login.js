@@ -71,9 +71,7 @@ class Login extends Component {
     };
 
     loadMainPages = () => {
-        // this.setState({ component: <CurrentTask /> });
-        //this.props.navigation.navigate('currentTask')
-        // this.props.navigation.navigate('currentTask');
+        this.props.navigation.navigate('TimePicker');
     };
 
     /**
@@ -163,13 +161,4 @@ const styles = StyleSheet.create({
     loginButtonText:{
         color: 'white'
     }
-});
-
-const stylesTask = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 });
