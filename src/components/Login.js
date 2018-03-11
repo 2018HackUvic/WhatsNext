@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import CurrentTask from '../components/currentTask.js'
 import * as firebase from 'firebase';
 
 /**
@@ -43,9 +44,7 @@ class Login extends Component {
 
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then((user) => {
-                /**
-                 * @TODO Return main screen
-                 */
+                this.loadMainPages();
             })
             .catch((error) => {
                 const { code, message } = error;
@@ -62,14 +61,19 @@ class Login extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((user) => {
                 alert('account created');
-                /**
-                 * @TODO Return main screen
-                 */
+                this.loadMainPages();
             })
             .catch((error) => {
                 const { code, message } = error;
                 alert('error creating new account')
             });
+    };
+
+    loadMainPages = () => {
+        return <View style = {stylesTask.container} >
+            <CurrentTask />
+            <Timepicker />
+        </View>
     };
 
     /**
@@ -81,15 +85,15 @@ class Login extends Component {
      */
     render(){
       return (
-        <View style = {styles.container}>
-            <TextInput style = {styles.input}
+        <View style = {styles.loginContainerLogin}>
+            <TextInput style = {styles.loginInputLogin}
                        underlineColorAndroid = "transparent"
                        placeholder = "Email"
                        placeholderTextColor = "#9a73ef"
                        autoCapitalize = "none"
                        onChangeText = {this.handleEmail}/>
 
-            <TextInput secureTextEntry={true} style = {styles.input}
+            <TextInput secureTextEntry={true} style = {styles.loginInputLogin}
                        underlineColorAndroid = "transparent"
                        placeholder = "Password"
                        placeholderTextColor = "#9a73ef"
@@ -97,23 +101,23 @@ class Login extends Component {
                        type = "hidden"
                        onChangeText = {this.handlePassword}/>
 
-            <View style = {styles.containerButtons}>
+            <View style = {styles.loginContainerButtons}>
                 <TouchableOpacity
-                    style = {styles.loginButton}
+                    style = {styles.loginLoginButton}
                     onPress = {
                         () => this.onLogin()
                     }>
-                    <Text style = {styles.buttonText}> Login </Text>
+                    <Text style = {styles.loginButtonText}> Login </Text>
                 </TouchableOpacity>
             </View>
 
             <TouchableOpacity
-                style = {styles.registerButton}
+                style = {styles.loginRegisterButton}
                 onPress = {
                     () => this.onRegister()
 
                 }>
-                <Text style = {styles.buttonText}> Register </Text>
+                <Text style = {styles.loginButtonText}> Register </Text>
             </TouchableOpacity>
         </View>
     )
@@ -125,22 +129,22 @@ export default Login
  * CSS
  */
 const styles = StyleSheet.create({
-    container: {
+    loginContainerLogin: {
         paddingTop: '40%'
     },
-    input: {
+    loginInputLogin: {
         margin: 15,
         padding: 10,
         height: 40,
         borderColor: '#7a42f4',
         borderWidth: 1,
     },
-    containerButtons: {
+    loginContainerButtons: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    loginButton: {
+    loginLoginButton: {
         width:'40%',
         alignSelf: 'flex-start',
         backgroundColor: '#7a42f4',
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
         margin: 15,
         height: 40,
     },
-    registerButton: {
+    loginRegisterButton: {
         width:'40%',
         alignSelf: 'flex-end',
         backgroundColor: '#24CE84',
@@ -156,7 +160,16 @@ const styles = StyleSheet.create({
         margin: 15,
         height: 40,
     },
-    buttonText:{
+    loginButtonText:{
         color: 'white'
     }
+});
+
+const stylesTask = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
