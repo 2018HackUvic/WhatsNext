@@ -8,7 +8,9 @@ var config = {
     apiKey: "AIzaSyAEgMSIVcaLUNFJ8MvL5TFvFwaJxDcIYYE",
     authDomain: "whatsnext-2018.firebaseapp.com",
     databaseURL: "https://whatsnext-2018.firebaseio.com",
-    storageBucket: "whatsnext-2018.appspot.com"
+    projectId: "whatsnext-2018",
+    storageBucket: "whatsnext-2018.appspot.com",
+    messagingSenderId: "920031413651"
 };
 
 firebase.initializeApp(config);

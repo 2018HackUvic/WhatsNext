@@ -1,22 +1,10 @@
 import React, { Component } from 'react'
 import MainTask from '../components/MainTask.js'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import * as firebase from 'firebase';
+import firebase from "../components/firebase";
 
+const firebaseApp = firebase.app();
 
-/**
- * @IMPORTANT: firebase configuration
- * @type {{apiKey: string, authDomain: string, databaseURL: string, projectId: string, storageBucket: string, messagingSenderId: string}}
- */
-const firebaseConfig = {
-    apiKey: "AIzaSyAEgMSIVcaLUNFJ8MvL5TFvFwaJxDcIYYE",
-    authDomain: "whatsnext-2018.firebaseapp.com",
-    databaseURL: "https://whatsnext-2018.firebaseio.com",
-    projectId: "whatsnext-2018",
-    storageBucket: "whatsnext-2018.appspot.com",
-    messagingSenderId: "920031413651"
-    };
-firebase.initializeApp(firebaseConfig);
 /**
  * Main Login class handles login, register, button display
  */
@@ -70,7 +58,7 @@ class Login extends Component {
     };
 
     loadMainPages = () => {
-        this.props.navigation.navigate('MainTask');
+        this.props.navigation.navigate('TimePicker');
     };
 
     /**
