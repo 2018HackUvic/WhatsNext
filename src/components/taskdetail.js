@@ -8,6 +8,7 @@ import StatusBar from '../components/statusbar';
 import ActionButton from '../components/actionbutton';
 import ListTask from '../components/listtask';
 import styles from '../styles.js';
+import TimePicker from '../components/timepicker'
 import { StackNavigator } from 'react-navigation';
 import {
   AppRegistry,
@@ -62,10 +63,12 @@ getRef() {
   }
   
     render() {
+      const { navigate } = this.props.navigation;
     return (
       <View style={styles.taskContainer}>
 
-        <StatusBar title="What's Next" nav="Back" onPressAdd={this._addTask.bind(this)} />
+        <StatusBar title="What's Next" nav="Back" onPressNav={() => {
+                    navigate('TimePicker', { task : 'clean the room'})}} onPressAdd={this._addTask.bind(this)} />
 
         <ListView 
 		dataSource={this.state.dataSource} 
