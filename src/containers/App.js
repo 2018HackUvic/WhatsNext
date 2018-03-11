@@ -1,9 +1,7 @@
 import React from 'react';
 import Login from '../components/Login.js'
-import CurrentTask from '../components/currentTask.js'
 import { StackNavigator } from 'react-navigation';
-import TimePicker from "../components/timepicker";
-
+import MainTask from '../components/MainTask.js'
 
 const RootStack = StackNavigator(
     {
@@ -11,10 +9,7 @@ const RootStack = StackNavigator(
           screen: Login,
         },
         MainTask: {
-          screen: CurrentTask,
-        },
-        TimePicker: {
-          screen: TimePicker,
+          screen: MainTask,
         }
     },
     {
