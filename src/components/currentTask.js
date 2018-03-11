@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, Picker, StyleSheet, Button } from 'react-native'
 
 class CurrentTask extends Component {
+    //init the state for task and started time
     state = {
         Task: 'Task',
         StartedTime: 'StartedTime'
     }
+    //display the components
     render() {
         return (
                 <View style={styles.container}>
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'blue'
     },
+    //give the components some padding on top
     container: {
         position: 'absolute',
         top: 100,

@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { View, Text, Picker, StyleSheet, Button } from 'react-native'
 
 class TimePicker extends Component {
+      //init the state for EstimatedTime and TimePeriodList
     state = { EstimatedTime: '',
-            ArrayList: [] }
+            TimePeriodList: [] }
+
+    //called when user updated the picker value
     updateEstimatedTime = (EstimatedTime) => {
         this.setState({ EstimatedTime: EstimatedTime })
     }
 render() {
+    //provide the selection with data
     for (let i = 0; i < 10; i++) {
-        this.state.ArrayList.push(i*10)
+        this.state.TimePeriodList.push(i*10)
     }
     return (
         <View style = {styles.container}>
@@ -18,7 +22,7 @@ render() {
                     onValueChange={this.updateEstimatedTime}
                     itemStyle={{ height: 50 }}>
                 {
-                    this.state.ArrayList.map((data) =>
+                    this.state.TimePeriodList.map((data) =>
                         <Picker.Item label={data.toString()} value={data} />
                     )
                 }
