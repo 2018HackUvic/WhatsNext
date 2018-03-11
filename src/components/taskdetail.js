@@ -45,6 +45,7 @@ getRef() {
       snap.forEach((child) => {
         tasks.push({
           title: child.val().title,
+          time: child.val().time,
           _key: child.key
         });
       });

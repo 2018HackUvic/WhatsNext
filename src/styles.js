@@ -37,7 +37,7 @@ var styles = StyleSheet.create({
   liTime: {
     color: '#333',
     width: 100,
-    textAlign: 'center',
+    textAlign: 'right',
     fontSize: 16,
     paddingRight: 10
   },
