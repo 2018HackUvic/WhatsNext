@@ -43,7 +43,7 @@ class TimePicker extends Component {
         <View style={styles.container}>
             <Text style={styles.text}>{this.state.Task}</Text>
             <Text style={styles.textB}>{this.state.StartedTime}</Text>
-                <Text style={styles.text}>I'm free for next</Text>
+                <Text style={styles.text}>I'm free for the next</Text>
                 <Picker selectedValue={this.state.EstimatedTime}
                     onValueChange={this.updateEstimatedTime}>
                     {
@@ -52,13 +52,13 @@ class TimePicker extends Component {
                         )
                     }
                 </Picker>
-                <Text style={styles.text}>Mins</Text>
+                <Text style={styles.text}>Minutes</Text>
 
                 <Button onPress={() => {
-                    navigate('TaskOngoing', { task : 'clean the room', time : "2 mins ago"})
+                    navigate('TaskOngoing', { task : 'clean the room', time : "0 mins ago"})
                 }}
                     title="What's Next?"
-                    color="blue"
+                    color="#7a42f4"
                 />
             </View>
 
@@ -68,14 +68,14 @@ class TimePicker extends Component {
 export default TimePicker
 const styles = StyleSheet.create({
     text: {
-        fontSize: 30,
+        fontSize: 25,
         alignSelf: 'center',
-        color: 'red'
+        color: '#24CE84'
     },
     textB: {
-        fontSize: 30,
+        fontSize: 25,
         alignSelf: 'center',
-        color: 'red',
+        color: '#24CE84',
         paddingBottom: 100
     },
     container: {
