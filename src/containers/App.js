@@ -2,6 +2,7 @@ import React from 'react';
 import Login from '../components/Login.js'
 import { StackNavigator } from 'react-navigation';
 import MainTask from '../components/MainTask.js'
+import MainTaskOngoing from '../components/MainTaskOngoing.js'
 
 const RootStack = StackNavigator(
     {
@@ -10,6 +11,9 @@ const RootStack = StackNavigator(
         },
         MainTask: {
           screen: MainTask,
+        },
+        MainTaskOngoing: {
+          screen: MainTaskOngoing
         }
     },
     {

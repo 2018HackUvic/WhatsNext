@@ -15,7 +15,7 @@ class TimePicker extends Component {
     };
 
     startTask = () => {
-        this.setState({ IsTaskStarted: true });
+        this.props.navigation.navigate('MainTaskOngoing', { time: this.state.EstimatedTime } );
     };
 
     taskOngoing = () => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Picker, StyleSheet, Button } from 'react-native'
+import { StackNavigator } from 'react-navigation';
 
 class TaskOngoing extends Component {
     //init the state for EstimatedTime and TimePeriodList
@@ -7,14 +8,19 @@ class TaskOngoing extends Component {
         Done: false,
         Skiped: false
     }
+
+    startTask = () => {
+        this.props.navigation.navigate('MainTask');
+    };
+
     render() {
         return (
             <View style={styles.container}>
-                <Button
+                <Button onPress={() => this.startTask()}
                     title="I'm Done"
                     color="Red"
                 />
-                <Button
+                <Button onPress={() => this.startTask()}
                     title="SKIP"
                     color="Red"
                 />
