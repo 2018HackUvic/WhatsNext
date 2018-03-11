@@ -5,16 +5,18 @@ class TimePicker extends Component {
       //init the state for EstimatedTime and TimePeriodList
     state = { EstimatedTime: '',
             TimePeriodList: [],
-            IsTaskStarted: false }
+            IsTaskStarted: false,
+            arrayInit: false
+    };
 
     //called when user updated the picker value
     updateEstimatedTime = (EstimatedTime) => {
         this.setState({ EstimatedTime: EstimatedTime })
-    }
+    };
 
     startTask = () => {
         this.setState({ IsTaskStarted: true });
-    }
+    };
 
     taskOngoing = () => {
         return (
@@ -29,7 +31,7 @@ class TimePicker extends Component {
                 />
             </View>
         );
-    }
+    };
 
     taskTimePicker = () => {
         <View style={styles.container}>
@@ -54,8 +56,11 @@ class TimePicker extends Component {
 
 render() {
     //provide the selection with data
-    for (let i = 0; i < 10; i++) {
-        this.state.TimePeriodList.push(i*10)
+    if (!this.state.arrayInit) {
+        for (let i = 0; i < 10; i++) {
+            this.state.TimePeriodList.push(i*10)
+        }
+        this.state.arrayInit = true;
     }
     return (
         <View style = {styles.container}>
@@ -68,8 +73,7 @@ render() {
             <View style={styles.container}>
                 <Text style={styles.text}>I'm free for next</Text>
                 <Picker selectedValue={this.state.EstimatedTime}
-                    onValueChange={this.updateEstimatedTime}
-                    itemStyle={{ height: 50 }}>
+                    onValueChange={this.updateEstimatedTime}>
                     {
                         this.state.TimePeriodList.map((data) =>
                             <Picker.Item label={data.toString()} value={data} />
@@ -100,6 +104,6 @@ const styles = StyleSheet.create({
         width: 375,
         height: 300,
         position: 'absolute',
-        bottom: 0,
+        bottom: 50,
     },
 })

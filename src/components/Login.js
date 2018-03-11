@@ -71,7 +71,7 @@ class Login extends Component {
     };
 
     loadMainPages = () => {
-        this.props.navigation.navigate('TimePicker');
+        this.props.navigation.navigate('MainTask');
     };
 
     /**
