@@ -1,9 +1,21 @@
-import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet } from 'react-native';
-import TaskMinsPicker from '../components/TaskMinsPicker.js'
-export default class PickerExample extends Component {
-  render() {
-    return (<TaskMinsPicker />)
-    
-  }
-  }
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Timepicker from '../components/timepicker.js'
+
+const Home = () => {
+  return (
+    <View style={styles.container}>
+      <Timepicker />
+    </View>
+  )
+}
+export default Home
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
