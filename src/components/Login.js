@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import CurrentTask from '../components/currentTask.js'
+import currentTask from '../components/currentTask.js'
 import * as firebase from 'firebase';
+import TimePicker from "./timepicker";
+
 
 /**
  * @IMPORTANT: firebase configuration
@@ -16,7 +18,6 @@ const firebaseConfig = {
     messagingSenderId: "920031413651"
     };
 firebase.initializeApp(firebaseConfig);
-
 /**
  * Main Login class handles login, register, button display
  */
@@ -44,6 +45,7 @@ class Login extends Component {
 
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then((user) => {
+                //alert('in');
                 this.loadMainPages();
             })
             .catch((error) => {
@@ -61,7 +63,6 @@ class Login extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((user) => {
                 alert('account created');
-                this.loadMainPages();
             })
             .catch((error) => {
                 const { code, message } = error;
@@ -70,10 +71,9 @@ class Login extends Component {
     };
 
     loadMainPages = () => {
-        return <View style = {stylesTask.container} >
-            <CurrentTask />
-            <Timepicker />
-        </View>
+        // this.setState({ component: <CurrentTask /> });
+        //this.props.navigation.navigate('currentTask')
+        // this.props.navigation.navigate('currentTask');
     };
 
     /**
