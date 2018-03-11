@@ -1,24 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Timepicker from '../components/timepicker.js'
-import CurrentTask from '../components/currentTask.js'
+import Login from '../components/Login.js'
+import { StackNavigator } from 'react-navigation';
+import MainTask from '../components/MainTask.js'
 
+const RootStack = StackNavigator(
+    {
+        Login: {
+          screen: Login,
+        },
+        MainTask: {
+          screen: MainTask,
+        }
+    },
+    {
+      initialRoute: 'Login',
+    }
+);
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <CurrentTask />
-      <Timepicker />
-    </View>
+      <RootStack />
   )
-}
+};
 export default Home
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
