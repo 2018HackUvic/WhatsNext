@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Picker, StyleSheet, Button } from 'react-native'
+import Login from '../components/Login.js'
+import MainTask from '../components/MainTask.js'
+import MainTaskOngoing from '../components/MainTaskOngoing.js'
 
 class CurrentTask extends Component {
     //init the state for task and started time

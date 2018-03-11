@@ -1,23 +1,28 @@
 import React from 'react';
 import Login from '../components/Login.js'
-import { StackNavigator } from 'react-navigation';
 import MainTask from '../components/MainTask.js'
-import MainTaskOngoing from '../components/MainTaskOngoing.js'
+import TaskOngoing from '../components/taskOngoing.js'
+import { StackNavigator } from 'react-navigation';
+import TimePicker from "../components/timepicker";
+import CurrentTask from "../components/currentTask"
 
 const RootStack = StackNavigator(
     {
-        Login: {
-          screen: Login,
+        // Login: {
+        //   screen: Login,
+        // },
+        TimePicker: {
+          screen: TimePicker
         },
-        MainTask: {
-          screen: MainTask,
+        CurrentTask: {
+          screen: CurrentTask
         },
-        MainTaskOngoing: {
-          screen: MainTaskOngoing
+        TaskOngoing: {
+            screen: TaskOngoing
         }
     },
     {
-      initialRoute: 'Login',
+      initialRoute: 'MainTask'
     }
 );
 

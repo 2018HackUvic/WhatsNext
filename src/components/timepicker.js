@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet, Button } from 'react-native'
-import { renderIf } from './renderIf'
+import { View, Text, Picker, StyleSheet, Button, Alert } from 'react-native'
+import MainTaskOngoing from './MainTaskOngoing';
+
 class TimePicker extends Component {
       //init the state for EstimatedTime and TimePeriodList
     state = { EstimatedTime: '',
             TimePeriodList: [],
             IsTaskStarted: false,
-            arrayInit: false
+            arrayInit: false,
+            Task: 'Task',
+            StartedTime: 'StartedTime'
     };
 
     //called when user updated the picker value
@@ -14,47 +17,20 @@ class TimePicker extends Component {
         this.setState({ EstimatedTime: EstimatedTime })
     };
 
-    startTask = () => {
-        this.props.navigation.navigate('MainTaskOngoing', { time: this.state.EstimatedTime } );
-    };
-
-    taskOngoing = () => {
-        return (
-            <View style={styles.container}>
-                <Button
-                    title="I'm Done"
-                    color="Red"
-                />
-                <Button
-                    title="SKIP"
-                    color="Red"
-                />
-            </View>
-        );
-    };
-
-    taskTimePicker = () => {
-        <View style={styles.container}>
-            <Text style={styles.text}>I'm free for next</Text>
-            <Picker selectedValue={this.state.EstimatedTime}
-                onValueChange={this.updateEstimatedTime}
-                itemStyle={{ height: 50 }}>
-                {
-                    this.state.TimePeriodList.map((data) =>
-                        <Picker.Item label={data.toString()} value={data} />
-                    )
-                }
-            </Picker>
-            <Text style={styles.text}>{this.state.EstimatedTime}</Text>
-            <Text style={styles.text}>Mins</Text>
-            <Button onPress={() => this.startTask()}
-                title="What's Next?"
-                color="blue"
-            />
-        </View>
+    alertStatus = () => {
+        if(this.props.status === "done"){
+            Alert.alert(
+                "done"
+            )
+        } else if (this.props.status === "skipped"){
+            Alert.alert(
+                "skipped"
+            )
+        }
     }
-    
     render() {
+
+        const { navigate } = this.props.navigation;
     //provide the selection with data
     if (!this.state.arrayInit) {
         for (let i = 0; i < 10; i++) {
@@ -63,14 +39,10 @@ class TimePicker extends Component {
         this.state.arrayInit = true;
     }
     return (
-        <View style = {styles.container}>
-            {/* {renderIf(this.state.IsTaskStarted,
-                this.taskOngoing().context
-            )}
-            {renderIf(!this.state.isUserLoggedIn,
-               {taskTimePicker()}
-            )} */}
-            <View style={styles.container}>
+
+        <View style={styles.container}>
+            <Text style={styles.text}>{this.state.Task}</Text>
+            <Text style={styles.textB}>{this.state.StartedTime}</Text>
                 <Text style={styles.text}>I'm free for next</Text>
                 <Picker selectedValue={this.state.EstimatedTime}
                     onValueChange={this.updateEstimatedTime}>
@@ -80,14 +52,16 @@ class TimePicker extends Component {
                         )
                     }
                 </Picker>
-                <Text style={styles.text}>{this.state.EstimatedTime}</Text>
                 <Text style={styles.text}>Mins</Text>
-                <Button onPress={() => this.startTask()}
+
+                <Button onPress={() => {
+                    navigate('TaskOngoing', { task : 'clean the room', time : "2 mins ago"})
+                }}
                     title="What's Next?"
                     color="blue"
                 />
             </View>
-        </View>
+
     )
 }
 }
@@ -98,10 +72,16 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'red'
     },
+    textB: {
+        fontSize: 30,
+        alignSelf: 'center',
+        color: 'red',
+        paddingBottom: 100
+    },
     container: {
         width: 375,
         height: 300,
         position: 'absolute',
-        bottom: 50,
+        top: 50,
     },
-})
+});

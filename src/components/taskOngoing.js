@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 import { View, Text, Picker, StyleSheet, Button } from 'react-native'
-import { StackNavigator } from 'react-navigation';
+import MainTask from '../components/MainTask.js'
+import TimePicker from "./timepicker";
 
 class TaskOngoing extends Component {
     //init the state for EstimatedTime and TimePeriodList
     state = {
         Done: false,
-        Skiped: false
-    }
+        Skiped: false,
 
-    startTask = () => {
-        this.props.navigation.navigate('MainTask');
     };
 
+
+
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Button onPress={() => this.startTask()}
-                    title="I'm Done"
-                    color="Red"
+                <Text style={styles.text}>clean the room</Text>
+                <Text style={styles.textB}>2 mins ago</Text>
+                <Button onPress={() => {
+                    navigate('TimePicker', { status : 'done'})
+                }}
+                        title="I'm Done"
+                        color="Blue"
                 />
-                <Button onPress={() => this.startTask()}
-                    title="SKIP"
-                    color="Red"
+                <Button onPress={() => {
+                    navigate('TimePicker', { status : 'skipped'})
+                }}
+                        title="SKIP"
+                        color="Red"
                 />
             </View>
         )
@@ -36,10 +43,16 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'red'
     },
+    textB: {
+        fontSize: 30,
+        alignSelf: 'center',
+        color: 'red',
+        paddingBottom: 100
+    },
     container: {
         width: 375,
         height: 300,
         position: 'absolute',
-        bottom: 0,
+        top: 50,
     },
-})
+});

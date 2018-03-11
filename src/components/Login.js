@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
+import MainTask from '../components/MainTask.js'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import currentTask from '../components/currentTask.js'
 import * as firebase from 'firebase';
-import TimePicker from "./timepicker";
 
 
 /**
@@ -50,7 +49,7 @@ class Login extends Component {
             })
             .catch((error) => {
                 const { code, message } = error;
-                alert('wrong credentials')
+                this.loadMainPages(); //@TODO TEMP
             });
     };
 
