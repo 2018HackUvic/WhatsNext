@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Timepicker from '../components/timepicker.js'
+import CurrentTask from '../components/currentTask.js'
+
 
 const Home = () => {
   return (
     <View style={styles.container}>
+      <CurrentTask />
       <Timepicker />
     </View>
   )
