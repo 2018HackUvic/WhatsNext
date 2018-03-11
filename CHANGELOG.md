@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 * Added Readme -CL
 
 ### Updated
+* updated timepicker.js (display 10 mins time block instead of mins) -CL
 * Updated App.js (Display currentTask) -CL
 * Updated App.js (Display timepicker) -CL
 * Change origin readme to ReactNativeNotes -CL

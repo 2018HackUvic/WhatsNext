@@ -8,8 +8,8 @@ class TimePicker extends Component {
         this.setState({ EstimatedTime: EstimatedTime })
     }
 render() {
-    for (let i = 0; i < 100; i++) {
-        this.state.ArrayList.push(i)
+    for (let i = 0; i < 10; i++) {
+        this.state.ArrayList.push(i*10)
     }
     return (
         <View style = {styles.container}>
