@@ -9,7 +9,7 @@ class TaskItem extends Component {
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.li}>
           <Text style={styles.liTask}>{this.props.task.title}</Text>
-          <Text style={styles.liTime}>TIME HERE</Text>
+          <Text style={styles.liTime}>{this.props.task.time}</Text>
         </View>
       </TouchableHighlight>
     );
