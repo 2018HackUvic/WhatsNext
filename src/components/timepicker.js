@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet, Button, Alert } from 'react-native'
+import { View, Text, Picker, StyleSheet, Button, Alert, AlertIOS } from 'react-native'
 import MainTaskOngoing from './MainTaskOngoing';
+import StatusBar from './statusbar';
+import TaskDetail from './taskdetail';
+import firebase from "../components/firebase";
+
+const firebaseApp = firebase.app();
 
 class TimePicker extends Component {
       //init the state for EstimatedTime and TimePeriodList
@@ -28,6 +33,51 @@ class TimePicker extends Component {
             )
         }
     }
+
+    constructor(props) {
+        super(props);
+        this.tasksRef = this.getRef().child('tasks');
+      }
+      
+      getRef() {
+          return firebaseApp.database().ref();
+      }
+
+      listenForTasks(tasksRef) {
+        tasksRef.on('value', (snap) => {
+    
+          // get children as an array
+          var tasks = [];
+          snap.forEach((child) => {
+            tasks.push({
+              title: child.val().title,
+              _key: child.key
+            });
+          });    
+        });
+      }
+
+      componentDidMount() {
+        this.listenForTasks(this.tasksRef);
+      }
+
+      _addTask() {
+        AlertIOS.prompt(
+          'Add New Task',
+          null,
+          [
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {
+              text: 'Add',
+              onPress: (text) => {
+                this.tasksRef.push({ title: text })
+              }
+            },
+          ],
+          'plain-text'
+        );
+      }    
+
     render() {
 
         const { navigate } = this.props.navigation;
@@ -39,7 +89,11 @@ class TimePicker extends Component {
         this.state.arrayInit = true;
     }
     return (
-
+        <View>
+            <View style={styles.taskContainer}>
+        <StatusBar title="What's Next" nav="Tasks" onPressAdd={this._addTask.bind(this)} onPressNav={() => {
+            navigate('TaskDetail', {task: 'test'}) }}/>
+        </View>
         <View style={styles.container}>
             <Text style={styles.text}>{this.state.Task}</Text>
             <Text style={styles.textB}>{this.state.StartedTime}</Text>
@@ -61,7 +115,7 @@ class TimePicker extends Component {
                     color="blue"
                 />
             </View>
-
+</View>
     )
 }
 }
@@ -82,6 +136,6 @@ const styles = StyleSheet.create({
         width: 375,
         height: 300,
         position: 'absolute',
-        top: 50,
+        top: 100,
     },
 });
