@@ -53,7 +53,8 @@ class TimePicker extends Component {
             />
         </View>
     }
-render() {
+    
+    render() {
     //provide the selection with data
     if (!this.state.arrayInit) {
         for (let i = 0; i < 10; i++) {
