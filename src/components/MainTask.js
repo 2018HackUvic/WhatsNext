@@ -2,7 +2,6 @@ import React from 'react'
 import CurrentTask from './currentTask'
 import {StyleSheet, View} from 'react-native'
 import TimePicker from "./timepicker";
-import { StackNavigator } from 'react-navigation';
 
 const MainTask = () => {
       return (
